@@ -5,19 +5,24 @@ import me from "../assets/me.png";
 
 <section class="hero">
     <div class="hero-text">
-        <h1>Why?</h1>
-        <div>
-            <p>Die digitale Transformation stellt Unternehmen, Mitarbeitende und Lernende vor große Herausforderungen. Jeder steht vor der Notwendigkeit, neue Kompetenzen aufzubauen -  die stetige Entwicklung digitaler Prozesse wird letztlich von Menschen vorangetrieben.</p>
-            <p>Wir, die LUTZ + GRUB ACADEMY GmbH, befähigen zum adaptiven und lebenslangen Lernen, um individuell und kollektiv erfolgreich handeln zu können.</p>
-            <p>Durch innovative und Kontext angepasste Lernmethoden erreichen Organisationen und Lernende Kompetenzen, um ihre beruflichen Ziele zu erreichen.</p>
-            <p>Adaptive Growing® - be competent!</p>
+        <div class="hero-text">
+            <p class="hero-greeting">Hi, ich bin</p>
+            <h2>Wobias Tehrle</h2>
+            <h3>Teveloper; Grainer; Damer;</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
+                ab corrupti est cum facilis vel vitae, voluptate, asperiores
+                ipsum excepturi dignissimos unde dolorem omnis, odit facere
+                dolorum cupiditate cumque repellat ducimus voluptatibus? Dolor
+                unde soluta quisquam quas modi libero dolorum!
+            </p>
         </div>
     </div>
     <div class="hero-image">
-        <Image src={me} alt="Ich, einfach unverbesserlich." id={"me-image"}/>
+        <Image src={me} alt="Ich, einfach unverbesserlich." id={"me-image"} />
     </div>
 </section>
-    
+
 <style>
     section.hero {
         margin-bottom: 4rem;
@@ -33,13 +38,48 @@ import me from "../assets/me.png";
     section.hero > div.hero-image {
         width: 50vw;
     }
+    .hero-text p.hero-greeting {
+        font-size: 1.3rem;
+        color: rgb(64, 255, 255);
+    }
+    .hero-text > h2{
+        margin-top: 0.5rem;
+        font-size: 1.7em;
+        color: rgb(255, 255, 255);
+        text-shadow: 0 -5px 40px rgba(0, 0, 0, 0.5);
+    }
+    .hero-text > h3 {
+        color: rgb(0,69,42);
+        font-size: 1.4em;
+    }
+
     .hero-text p {
-        max-width: 45ch;
+        width: 45ch;
     }
     .hero-image > #me-image {
         object-fit: cover;
         height: 100%;
         overflow-x: hidden;
         width: 100%;
+        image-rendering: pixelated;
+    }
+
+    @media only screen and (max-width: 800px) {
+        section.hero {
+            flex-direction: column;
+        }
+        section.hero > div.hero-text {
+            width: 100%;
+            margin: 0;
+            position: static;
+        }
+        section.hero > div.hero-image {
+            width: 100%;
+            position: static;
+        }
+        .hero-text p {
+            width: 100%;
+            max-width: none;
+        }
     }
 </style>

@@ -11,34 +11,40 @@ import cardImage3 from "../assets/polarbear.jpg";
 <Layout title="Welcome to Astro.">
 	<main>
 		<Hero />
-		<div class="skill-grid">
-			<Progress
+		<section>
+
+			<div class="skill-grid">
+				<Progress
 				language={"TypeScript"}
 				color={"blue"}
 				progressValue={20}
-			/>
-			<Progress
+				/>
+				<Progress
 				language={"C#"}
 				color={"rgb(100, 0, 200)"}
 				progressValue={50}
-			/>
-			<Progress language={"SQL"} color={"orange"} progressValue={60} />
-			<Progress
+				/>
+				<Progress language={"SQL"} color={"orange"} progressValue={60} />
+				<Progress
 				language={"HTML/CSS"}
 				color={"rgb(151, 0, 30)"}
 				progressValue={20}
-			/>
-		</div>
-		<div class="card-container">
-			<Card source={cardImage1} alt="Projekt 1" />
-			<Card source={cardImage2} alt="Projekt 2" />
-			<Card source={cardImage3} alt="Projekt 3" />
-		</div>
-	</main>
-</Layout>
+				/>
+			</div>
+		</section>
+		<section>
 
-<style>
-	main {
+			<div class="card-container">
+				<Card source={cardImage1} alt="Projekt 1" title="Projekt 1" body="Beschreibung eines Projekts." />
+				<Card source={cardImage2} alt="Projekt 2" title="Projekt 2" body="Beschreibung eines anderen Projekts."/>
+				<Card source={cardImage3} alt="Projekt 3" title="Projekt 3" body="Beschreibung des neusten Projekts."/>
+			</section>
+			</div>
+		</main>
+	</Layout>
+	
+	<style>
+		main {
 		color: white;
 		font-size: 20px;
 		line-height: 1.6;
@@ -60,6 +66,5 @@ import cardImage3 from "../assets/polarbear.jpg";
 		flex-direction: row;
 		gap: 1rem;
 		flex-wrap: nowrap;
-		
 	}
 </style>
