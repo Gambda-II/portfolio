@@ -1,63 +1,142 @@
 ---
 import { Icon } from 'astro-icon/components';
-
 ---
 
 <nav>
-    <div class="logo">
-        <p>Lorem, ipsum.</p>
-    </div>
-
-    <ul class="nav-links">
-        <li>
-            <a href="">About Me</a>
-        </li>
-
-        <li>
-            <a href="">Projects</a>
-        </li>
-
-        <li>
-            <a href="">Contact</a>
-        </li>
-    </ul>
-
-    <div class="theme-switch">
-        <Icon name = "meteocons:clear-day-fill"/>
-    </div>
+  <div class="logo">
+    <Icon name="devicon:archlinux-wordmark" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="">About Me</a></li>
+    <li><a href="">Projects</a></li>
+    <li><a href="">Contact</a></li>
+  </ul>
+  <button class="theme-switch">
+    <Icon name="mdi:shield-moon" />
+    <Icon name="mdi:shield-sun" />
+  </button>
 </nav>
 
+<script defer>
+    const themeElement = document.querySelector('.theme-switch');
+    const moonIconElem = document.querySelector('[data-icon="mdi:shield-moon"]');
+    const sunIconElem = document.querySelector('[data-icon="mdi:shield-sun"]');
+
+    const getTheme = () => {
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme /* storedTheme äquivalent zu storedTheme !== undefined */){
+            return storedTheme;
+        }
+        else{
+            const userPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            return userPrefersDark ? "dark" : "light";
+        }
+    }
+
+    const setTheme = (theme) => {
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(theme);
+
+        if (theme === "dark"){
+            sunIconElem.classList.remove("icon-hidden");
+            moonIconElem.classList.add("icon-hidden");
+        }
+        else {
+            moonIconElem.classList.remove("icon-hidden");
+            sunIconElem.classList.add("icon-hidden");
+        }
+
+        localStorage.setItem("theme", theme);
+    }
+
+    themeElement.addEventListener("click", () => {
+        const currentTheme = getTheme();
+        const newTheme = currentTheme === "light" ? "dark" : "light";
+        
+        setTheme(newTheme);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const currentTheme = getTheme();
+        setTheme();
+    });
+</script>
+
 <style>
-
-nav {
-    display: flex;
-    flex-direction: row;
+  [data-icon="mdi:shield-moon"] {
+    color: black;
+  }
+  [date-icon="mdi:shield-sun"] {
     color: white;
-    justify-content: space-between;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
+  }
+  .icon-hidden {
+    display: none;
+  }
+  .theme-switch {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
-    font-size: 1.1em;
-}
+    justify-content: center;
+    align-items: center;
+  }
+  [data-icon] {
+    width: 40px;
+    height: auto;
+  }
+  [data-icon="devicon:archlinux-wordmark"] {
+    width: 120px;
+    height: auto;
+    margin: -1rem 0;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    color: #cfcfcf;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 10vh;
+  }
+  nav ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    font-size: 1.2em;
+  }
+  nav ul li a {
+    color: #cfcfcf;
+    text-decoration: none;
+    transition: all 0.5s ease-out;
+  }
+  nav ul li a:hover {
+    text-shadow: 0px 0px 15px #da6bff;
+    color: #da6bff;
+  }
+  .dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
 
-nav ul li a {
-    text-decoration-line: overline;
-    text-decoration-color: rgb(0, 255, 0);
-    text-decoration-style: wavy;
-    text-decoration-thickness: 0.01em;
-    color: rgba(255, 255, 255, 0.5);
-    transition: all 0.4s ease-out;
-}
+  nav ul li a {
+    color: #ffffff;
+  }
 
-nav ul li a:hover {
-    text-decoration-thickness: 0.075em;
-    text-shadow: 0px 0px 3px red;
-    color: aqua;
-}
+  nav ul li a:hover {
+    text-shadow: 0px 0px 15px #6b63ff;
+    color: #6b63ff;
+
+  }
+
+  nav button.theme-switch {
+    padding: 0;
+    background: none;
+    border: none;
+    height: fit-content;
+    width: fit-content;
+  }
+
+  html.light nav ul li a {
+    color: rgb(45,32,35);
+  }
 
 </style>
