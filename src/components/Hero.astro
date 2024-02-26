@@ -7,8 +7,8 @@ import me from "../assets/me.png";
     <div class="hero-text">
         <div class="hero-text">
             <p class="hero-greeting">Hi, ich bin</p>
-            <h2>Wobias Tehrle</h2>
-            <h3>Teveloper; Grainer; Damer;</h3>
+            <h2>A L</h2>
+            <h3>Developer</h3>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta
                 ab corrupti est cum facilis vel vitae, voluptate, asperiores
@@ -29,6 +29,7 @@ import me from "../assets/me.png";
         display: flex;
         flex-direction: row;
         height: 90vh;
+        overflow-y: hidden;
     }
 
     section.hero > div.hero-text {
@@ -54,7 +55,8 @@ import me from "../assets/me.png";
     }
 
     .hero-text p {
-        width: 45ch;
+        max-width: 30ch;
+        min-width: 30ch;
     }
     .hero-image > #me-image {
         object-fit: cover;
@@ -64,9 +66,11 @@ import me from "../assets/me.png";
         image-rendering: pixelated;
     }
 
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 900px) {
         section.hero {
             flex-direction: column;
+            height: fit-content;
+            overflow-y: hidden;
         }
         section.hero > div.hero-text {
             width: 100%;
