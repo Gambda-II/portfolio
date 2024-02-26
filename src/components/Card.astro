@@ -30,8 +30,8 @@ const { source, alt, title, body, gradientStartColor, gradientEndColor } =
 					y1="15%"
 					y2="100%"
 				>
-					<stop offset="0%" stop-color="#2040d0"></stop>
-					<stop offset="100%" stop-color="#f00100"></stop>
+					<stop offset="0%" stop-color={gradientStartColor}></stop>
+					<stop offset="100%" stop-color={gradientEndColor}></stop>
 				</linearGradient>
 			</defs>
 			<path
@@ -90,7 +90,7 @@ const { source, alt, title, body, gradientStartColor, gradientEndColor } =
 		width: 100%;
 		margin-top: 0.3rem;
 		border-radius: 2rem;
-		filter: drop-shadow(0 0 2px #8a0000);
+		filter: drop-shadow(0 0 5px #fffffff0);
 		z-index: 2;
 	}
 	#card-image {
