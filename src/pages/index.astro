@@ -6,12 +6,15 @@ import Card from "../components/Card.astro";
 import cardImage1 from "../assets/chefRat.jpg";
 import cardImage2 from "../assets/raven.jpg";
 import cardImage3 from "../assets/polarbear.jpg";
+import Factbox from "../components/Factbox.astro";
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<Hero />
-		<section>
+		<section id = "hero">
+			<Hero />
+		</section>
+		<section id = "skills">
 			<div class="skill-grid">
 				<Progress
 					language={"TypeScript"}
@@ -35,7 +38,7 @@ import cardImage3 from "../assets/polarbear.jpg";
 				/>
 			</div>
 		</section>
-		<section>
+		<section id = "projects">
 			<div class="card-container">
 				<Card
 					source={cardImage1}
@@ -63,10 +66,16 @@ import cardImage3 from "../assets/polarbear.jpg";
 				/>
 			</div>
 		</section>
+		<section id = "cat-facts">
+			<Factbox />
+		</section>
 	</main>
 </Layout>
 
 <style>
+	section {
+		margin-bottom: 2rem;
+	}
 	main {
 		color: white;
 		font-size: 20px;
