@@ -6,12 +6,18 @@ interface Props {
 	alt: string;
 	title: string;
 	body: string;
-	gradientStartColor: string;
-	gradientEndColor: string;
+	gradientStartColor?: string;
+	gradientEndColor?: string;
 }
 
-const { source, alt, title, body, gradientStartColor, gradientEndColor } =
-	Astro.props;
+const { 
+	source, 
+	alt, 
+	title, 
+	body, 
+	gradientStartColor = "#ff0000", 
+	gradientEndColor = "#00ff00", 
+} =	Astro.props;
 ---
 
 <div class="card">
@@ -24,7 +30,7 @@ const { source, alt, title, body, gradientStartColor, gradientEndColor } =
 		<svg viewBox="0 0 599 600" xmlns="http://www.w3.org/2000/svg">
 			<defs>
 				<linearGradient
-					id="gradient"
+					id={title}
 					x1="0%"
 					x2="0%"
 					y1="0%"
@@ -43,13 +49,13 @@ const { source, alt, title, body, gradientStartColor, gradientEndColor } =
 			L 600 600
 			L 0 600
 			"
-			fill="url('#gradient')"
+			fill=`url("#${title}")`
 			></path>
 		</svg>
 	</div>
 </div>
 
-<style>
+<style define:vars({{gradientStartColor}})>
 	.card {
 		position: relative;
 		box-shadow: 0px 0px 5px black;
@@ -88,7 +94,6 @@ const { source, alt, title, body, gradientStartColor, gradientEndColor } =
 	}
 	svg {
 		stroke-width: 0.5rem;
-		fill: url(#gradient);
 		position: absolute;
 		top: 30px;
 		left: 0;
