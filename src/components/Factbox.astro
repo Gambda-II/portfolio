@@ -1,36 +1,112 @@
 ---
-interface Props {
+interface Props {}
 
-}
-
+const languages = [
+    {
+        lang: "eng",
+        label: "English",
+    },
+    {
+        lang: "ger",
+        label: "Deutsch",
+    },
+];
 ---
 
-<div class="outer-box">
-    <select name="lang" id="lang">
-        <option value="ger-de" label="Deutsch"></option>
-        <option value="eng-us" label="Englisch"></option>
-    </select>
-    <div class="inner-box">
-        <p data-fact class="fact">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita eveniet eius ex nobis quod dolore, iure voluptatibus incidunt mollitia eum?
-        </p>
+<div class="factbox">
+    <div class="outer-box">
+        <select data-select-lang name="lang" id="lang">
+            {
+                languages.map((entry) => (
+                    <option value={entry.lang} label={entry.label} />
+                ))
+            }
+        </select>
+        <div class="inner-box">
+            <p data-fact class="fact">...</p>
+        </div>
     </div>
-    <button>
-        Get a random fact about cats
-    </button>
+    <button data-submit-fact> Get a random fact about cats</button>
 </div>
+
+<script defer>
+    const submitFactButtonElement =
+        document.querySelector("[data-submit-fact]");
+    const factTextElement = document.querySelector("[data-fact]");
+    const selectLanguageElement = document.querySelector("[data-select-lang]");
+
+    async function getCatFact() {
+        const baseURL = "https://meowfacts.herokuapp.com/";
+
+        const url = baseURL + "?lang=" + selectLanguageElement.value;
+
+        try {
+            const result = await fetch(url);
+            const data = await result.json();
+
+            return data.data[0];
+        } catch (error) {
+            return null;
+        }
+    }
+
+    if (submitFactButtonElement != null) {
+        submitFactButtonElement.addEventListener("click", async () => {
+            if (factTextElement == null) return;
+            try {
+                const catFacts = await getCatFact();
+                factTextElement.innerHTML = catFacts;
+            } catch (error) {
+                factTextElement.innerHTML =
+                    "There was a problem getting a cat fact.";
+            }
+        });
+    }
+</script>
 
 <style>
     .outer-box {
         display: flex;
         flex-direction: column;
-        align-items: start;
-        background-color: #d0d0d0;
+        align-items: stretch;
+        background-color: #3d536b;
+        padding: 0.1rem;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+    }    
+    .outer-box > select {
+        align-self: start;
+        background-color: #eb9c10;
+        border: none;
+        border-radius: 0.2rem;
+        font-size: 1.1rem;
+        margin-left: 1.2rem;
+        margin-top: 0.2rem;
+        padding: 0.2rem;
     }
 
     .inner-box {
-        padding: 2rem;
+        padding: 0rem 1rem;
+        min-height: 250px;
+        text-align: justify;
+        align-items: center;
         margin: 1rem;
-        background-color: #acacac;
+        background-color: rgb(117, 193, 255);
+        border-radius: 0.5rem;
+    }
+    .factbox {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    .factbox > button {
+        border-radius: 0;
+        border-style: none;
+        height: 50px;
+        background-color: #eb9c10;
+        font-size: 1.5em;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        color: #413a30;
     }
 </style>
