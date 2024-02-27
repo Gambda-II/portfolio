@@ -12,59 +12,62 @@ import cardImage3 from "../assets/polarbear.jpg";
 	<main>
 		<Hero />
 		<section>
-
 			<div class="skill-grid">
 				<Progress
-				language={"TypeScript"}
-				color={"blue"}
-				progressValue={20}
+					language={"TypeScript"}
+					color={"blue"}
+					progressValue={20}
 				/>
 				<Progress
-				language={"C#"}
-				color={"rgb(100, 0, 200)"}
-				progressValue={1}
+					language={"C#"}
+					color={"rgb(100, 0, 200)"}
+					progressValue={1}
 				/>
-				<Progress language={"SQL"} 
-				color={"orange"} 
-				progressValue={60} />
 				<Progress
-				language={"HTML/CSS"}
-				color={"rgb(151, 0, 30)"}
-				progressValue={99}
+					language={"SQL"}
+					color={"orange"}
+					progressValue={60}
+				/>
+				<Progress
+					language={"HTML/CSS"}
+					color={"rgb(151, 0, 30)"}
+					progressValue={99}
 				/>
 			</div>
 		</section>
 		<section>
-
 			<div class="card-container">
-				<Card 
-				source={cardImage1} 
-				alt="Projekt 1" 
-				title="Projekt 1" 
-				body="Beschreibung eines Projekts." 
-				gradientStartColor="#b32837b0" 
-				gradientEndColor="#79d3c9"/>
+				<Card
+					source={cardImage1}
+					alt="Projekt 1"
+					title="Projekt 1"
+					body="Beschreibung eines Projekts."
+					gradientStartColor="#b32837b0"
+					gradientEndColor="#79d3c9"
+				/>
 
-				<Card 
-				source={cardImage2} 
-				alt="Projekt 2" 
-				title="Projekt 2" 
-				body="Beschreibung eines anderen Projekts." 
-				gradientStartColor="#ffb02e" 
-				gradientEndColor="#402a32"/>
+				<Card
+					source={cardImage2}
+					alt="Projekt 2"
+					title="Projekt 2"
+					body="Beschreibung eines anderen Projekts."
+					gradientStartColor="#ffb02e"
+					gradientEndColor="#402a32"
+				/>
 
-				<Card 
-				source={cardImage3} 
-				alt="Projekt 3" 
-				title="Projekt 3" 
-				body="Beschreibung des neusten Projekts." />
-			</section>
+				<Card
+					source={cardImage3}
+					alt="Projekt 3"
+					title="Projekt 3"
+					body="Beschreibung des neusten Projekts."
+				/>
 			</div>
-		</main>
-	</Layout>
-	
-	<style>
-		main {
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
 		color: white;
 		font-size: 20px;
 		line-height: 1.6;
@@ -81,7 +84,7 @@ import cardImage3 from "../assets/polarbear.jpg";
 		grid-template-columns: 1fr 1fr;
 		margin-bottom: 2rem;
 	}
-	.card-container{
+	.card-container {
 		display: flex;
 		flex-direction: row;
 		gap: 1rem;
